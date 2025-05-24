@@ -1,0 +1,17 @@
+Day 1: Aggregate Function (COUNT)
+Q1.3 Count the number of employees in each department.
+
+sql
+======
+
+select department,count(*) as emp_count
+from employees
+group by department
+
+
+PySpark
+=========
+
+result_df = df.groupBy("department").agg(count("*").alias("emp_count")
+result_df.show()
+                                  
