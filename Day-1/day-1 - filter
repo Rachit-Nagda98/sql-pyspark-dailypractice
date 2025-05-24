@@ -1,0 +1,54 @@
+Day 1: Basic SELECT & Filter
+Q1. Select all employees whose age is greater than 30.
+
+Sql
+=====
+CREATE TABLE employees (
+    id INT PRIMARY KEY,
+    name VARCHAR(50),
+    age INT,
+    department VARCHAR(50),
+    salary INT
+);
+
+id — integer type, primary key
+name — variable character string max 50 chars
+age — integer
+department — variable character string max 50 chars
+salary — integer
+
+INSERT INTO employees (id, name, age, department, salary) VALUES
+(1, 'John', 28, 'Sales', 5000),
+(2, 'Jane', 35, 'HR', 6000),
+(3, 'Dave', 40, 'IT', 7000);
+
+
+Sql Implementation
+=======================================
+SELECT * FROM employees WHERE age > 30;
+
+
+
+Pyspark implementation
+=======================================
+from pyspark.sql import SparkSession
+
+spark = SparkSession.builder.appName("Day1Practice").getOrCreate()
+
+# Sample data
+data = [
+    (1, "John", 28, "Sales", 5000),
+    (2, "Jane", 35, "HR", 6000),
+    (3, "Dave", 40, "IT", 7000),
+]
+
+columns = ["id", "name", "age", "department", "salary"]
+
+df = spark.createDataFrame(data, schema=columns)
+
+# Filter employees where age > 30
+result_df = df.filter(df.age > 30)
+result_df.show()
+
+
+
