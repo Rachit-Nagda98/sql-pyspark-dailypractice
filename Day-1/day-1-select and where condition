@@ -1,0 +1,17 @@
+Day 1.2: SELECT specific columns & WHERE condition
+
+Select name and department of employees whose salary is greater than 6000.
+
+sql
+  ========
+
+  select name, department
+  from employees
+  where salary > 6000
+
+
+pyspark=========
+
+  from pyspark.sql.function import *
+    
+  result_df = df.filter((col("salary")) > 6000).select("name","department").show()
