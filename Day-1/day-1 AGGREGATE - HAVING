@@ -1,0 +1,24 @@
+Aggregate with HAVING
+Q1.4 Find departments having more than 1 employee.
+
+sql
+========
+select department, count(*) as cnt
+from employees
+group by department
+having cnt>1
+
+
+PySpark
+========
+
+groupped_df = df.groupBy("department").agg(count("*").alias("cnt")
+
+final_df = groupped_df.filter("cnt > 1")
+or
+final_df = groupped_df.filter(col("cnt")>1) 
+or
+final_df = groupped_df.where(col("cnt")>1)  
+or
+groupped_df = df.groupBy("department").agg(count("*").alias("cnt").filter(col("cnt")>1)        
+#####WHOLE IN ONE STATEMENT  => THIS IS MORE EFFICIENT
